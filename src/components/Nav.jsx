@@ -5,11 +5,18 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function Nav() {
+    function openMenu() {
+        document.body.classList += " menu--open"
+    }
+
+    function closeMenu() {
+        document.body.classList.remove("menu--open")
+    }
     return (
         <nav>
             <div className="nav__container">
                 <a href="/">
-                    <img src={LibraryLogo} alt="" classname="logo"/>
+                    <img src={LibraryLogo} alt="" className="logo"/>
                 </a>
                 <ul className="nav__links">
                     <li className="nav__list">
@@ -22,7 +29,7 @@ function Nav() {
                             Books
                         </a>
                     </li>
-                    <button className="btn__menu">
+                    <button className="btn__menu" onClick={openMenu}>
                         <FontAwesomeIcon icon={faBars}/>
                     </button>
                     <li className="nav__icon">
@@ -33,7 +40,7 @@ function Nav() {
                     </li>
                 </ul>
                 <div className="menu__backdrop">
-                    <button className="btn__menu btn__menu--close">
+                    <button className="btn__menu btn__menu--close" onClick={closeMenu}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
                     <ul className="menu__links">
