@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Book from '../components/ui/Book'
 
 const Books = ({ books: initialBooks }) => {
+    console.log('books loaded', initialBooks)
     const [books, setBooks] = useState(initialBooks)
 
     function filterBooks(filter) {
