@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Book from '../components/ui/Book'
+import Book from '../components/ui/Book.jsx'
 
 const Books = ({ books: initialBooks }) => {
     console.log('books loaded', initialBooks)
