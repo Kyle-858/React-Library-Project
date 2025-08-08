@@ -14,11 +14,9 @@ function App() {
 
   function addToCart(book) {
     setCart([...cart, { ...book, quantity: 1 }])
-    console.log('addtocart function called')
   }
 
   function changeQuantity(book, quantity) {
-    console.log(book, quantity)
     setCart(cart.map(item => {
       if (item.id === book.id) {
         return {
@@ -43,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/books" element={<Books books={books}/>}/>
-          <Route path="/books/:id" element={<BookInfo books={books} addToCart={addToCart}/>}/> 
+          <Route path="/books/:id" element={<BookInfo books={books} addToCart={addToCart} cart={cart}/>}/> 
           <Route path="/cart" element={<Cart books={books} cart={cart} changeQuantity={changeQuantity}/>}/>
         </Routes>
         <Footer />

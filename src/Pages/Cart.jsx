@@ -1,6 +1,14 @@
 import React from 'react'
 
 const Cart = ({ cart, changeQuantity }) => {
+
+    const subtotal = cart.reduce((acc, book) => {
+        const price = book.salePrice || book.originalPrice
+        return acc + price * book.quantity
+    }, 0);
+
+    const tax = subtotal * .07
+
     return (
         <div id="books__body">
             <main id="books__main">
@@ -43,7 +51,7 @@ const Cart = ({ cart, changeQuantity }) => {
                                         onChange={(event) => changeQuantity(book, event.target.value)}/>
                                     </div>
                                     <div className="cart__total">
-                                        $100.00
+                                        {((book.salePrice || book.originalPrice) * book.quantity).toFixed(2)}
                                     </div>
                                 </div>
                                         )
@@ -55,15 +63,15 @@ const Cart = ({ cart, changeQuantity }) => {
                         <div className="total">
                             <div className="total__item total__sub-total">
                                 <span>Subtotal</span>
-                                <span>$9.99</span>
+                                <span>{subtotal.toFixed(2)}</span>
                             </div>
                             <div className="total__item total__tax">
                                 <span>Tax</span>
-                                <span>$50.99</span>
+                                <span>{tax.toFixed(2)}</span>
                             </div>
                             <div className="total__item total__price">
                                 <span>Total</span>
-                                <span>$9.99</span>
+                                <span>{(subtotal + tax).toFixed(2)}</span>
                             </div>
                             <button className="btn btn__checkout no-cursor" onClick={() => alert('Feature not yet implemented')}>
                                 Proceed to checkout
