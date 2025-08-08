@@ -6,7 +6,7 @@ import { faBars, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-ico
 import { Link } from 'react-router-dom'
 
 
-function Nav({ cart }) {
+function Nav({ numberOfItems }) {
     function openMenu() {
         document.body.classList += " menu--open"
     }
@@ -38,7 +38,9 @@ function Nav({ cart }) {
                         <Link to="/cart" className="nav__link">
                             <FontAwesomeIcon icon={faShoppingCart} />
                         </Link>
-                        <span className="cart__length">{cart.length}</span>
+                        {numberOfItems > 0 &&
+                            <span className="cart__length">{numberOfItems}</span>
+                        }
                     </li>
                 </ul>
                 <div className="menu__backdrop">

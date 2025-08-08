@@ -1,6 +1,8 @@
 import React from 'react'
+import EmptyCart from '../assets/empty_cart.svg'
+import { Link } from 'react-router-dom'
 
-const Cart = ({ cart, changeQuantity }) => {
+const Cart = ({ cart, changeQuantity, setCart }) => {
 
     const subtotal = cart.reduce((acc, book) => {
         const price = book.salePrice || book.originalPrice
@@ -8,6 +10,10 @@ const Cart = ({ cart, changeQuantity }) => {
     }, 0);
 
     const tax = subtotal * .07
+
+    function removeFromCart(id) {
+        setCart(prevCart => prevCart.filter(book => book.id !== id))
+    }
 
     return (
         <div id="books__body">
@@ -37,7 +43,7 @@ const Cart = ({ cart, changeQuantity }) => {
                                             <span className="cart__book--price">
                                                 {(book.salePrice || book.originalPrice).toFixed(2)}
                                             </span>
-                                            <button className="cart__book--remove">
+                                            <button className="cart__book--remove" onClick={() => removeFromCart(book.id)}>
                                                 Remove
                                             </button>
                                         </div>
@@ -59,8 +65,18 @@ const Cart = ({ cart, changeQuantity }) => {
                                 }
                                
                             </div>
+                            {cart.length === 0 && 
+                            <div className="cart__empty">
+                                <img src={EmptyCart} alt="" className="cart__empty--img" />
+                                <h2>You have no items in your cart</h2>
+                                <Link to="/books">
+                                    <button className="btn">Browse selection</button>
+                                </Link>
+                            </div>
+                            }
+                            
                         </div>
-                        <div className="total">
+                        {cart.length > 0 && <div className="total">
                             <div className="total__item total__sub-total">
                                 <span>Subtotal</span>
                                 <span>{subtotal.toFixed(2)}</span>
@@ -76,7 +92,7 @@ const Cart = ({ cart, changeQuantity }) => {
                             <button className="btn btn__checkout no-cursor" onClick={() => alert('Feature not yet implemented')}>
                                 Proceed to checkout
                             </button>
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </main>
