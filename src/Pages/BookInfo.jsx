@@ -11,10 +11,15 @@ const BookInfo = ({ books, addToCart, cart }) => {
 
     function addBookToCart(book) {
         addToCart(book)
+        console.log('addtocart function called')
     }
 
-    function bookExistsOnCart() {
-        if (!Array.isArray(cart)) return false
+    function bookExistsOnCart(id) {
+        if (!Array.isArray(cart)) {
+            console.log('cart is invalid array')
+            return false
+        }
+        console.log('checking if book exists on cart')
         return cart.find(book => book.id === +id)
     }
 
@@ -49,7 +54,8 @@ const BookInfo = ({ books, addToCart, cart }) => {
                                     </div>
                                     <p className="book__summary--para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus voluptate pariatur nisi molestiae omnis maxime minus nam fuga obcaecati, eligendi nesciunt illo eos id tempora? Aut odit molestiae cumque nulla!</p>
                                 </div>
-                                {bookExistsOnCart() ? (
+                                {bookExistsOnCart(book.id) ? (
+                                    
                                     <Link to={`/cart`} className="book__link">
                                         <button className="btn">Checkout</button>
                                     </Link>
