@@ -1,7 +1,5 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LibraryLogo from '../assets/Library.svg'
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom'
 
@@ -17,7 +15,7 @@ function Nav({ numberOfItems }) {
     return (
         <nav>
             <div className="nav__container">
-                <Link to="/">
+                <Link to="/" className="nav__logo">
                     <img src={LibraryLogo} alt="Top logo" className="logo"/>
                 </Link>
                 <ul className="nav__links">
