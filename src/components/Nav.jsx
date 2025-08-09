@@ -18,7 +18,7 @@ function Nav({ numberOfItems }) {
         <nav>
             <div className="nav__container">
                 <Link to="/">
-                    <img src={LibraryLogo} alt="" className="logo"/>
+                    <img src={LibraryLogo} alt="Top logo" className="logo"/>
                 </Link>
                 <ul className="nav__links">
                     <li className="nav__list">

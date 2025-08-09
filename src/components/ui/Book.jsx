@@ -22,7 +22,7 @@ const Book = ({ book }) => {
             <>
                 <Link to={`/books/${book.id}`}>
                     <figure className="book__img--wrapper">
-                        <img src={img.src} alt="" className="book__img"/>
+                        <img src={img.src} alt={book.title || "Book cover"} className="book__img"/>
                     </figure>
                 </Link>
                 <div className="book__title">
